@@ -8,8 +8,8 @@ Dans notre projet on optera pour la configuration d'un spring cloud gateway qui 
 de requetes entrantes, ces derniers sont traitée en background de manières asynchrones, une fois le traitement est achevé la requete est renvoyé.
 Les requetes sont toujours traités sauf saturation de mémoire et CPU.
 
----------------------------
-Cas 1 : Utilisation d'un fichier application.yml
+--------------------------- Config Statique------------------------------------------------------------
+Cas 1 : Static routes configuration with Discovery Service à l'aide d'un fichier application.yml
 ----
 A)
 Dans ce fichier yml on mentionne la route vers laquelle nous voulons qu'une requete soit destinée:
@@ -17,12 +17,17 @@ Dans ce fichier yml on mentionne la route vers laquelle nous voulons qu'une requ
 -Predicate(Condtion).
 -Filters(Optionel).
 
-B)Au niveau du main, nous utilisons la méthode RouteLocator qui éxecute à l'aide de l'annotation @Bean
+B)Au niveau du main, nous utilisons la méthode RouteLocator qui éxecute à l'aide de l'annotation @Bean la classe RouteLocatorBuilder qui construit des routes statics.
 
----------------------------
-Cas 2 : Utilisation d'un fichier application.properties
+--------------------------- Config Dynamique----------------------------------------------------------------
+Cas 2 : Dynamic routes configuration with Discovery Service à l'aide du fichier application.properties
 ----
-Sur ce fichier on mentienne : 
+A)
+Sur ce fichier on mentionne : 
 -Le port du server(8888).
 -Le nom de la Gateway.
 -Activation du discovery(true).
+
+B) La passerelle est configurée pour créer des routes basées sur des services enregistrés auprès d'un DiscoveryClientregistre de services compatible.
+
+Pour activer cela, définissez spring.cloud.gateway.discovery.locator.enabled=trueet assurez-vous qu'une DiscoveryClientimplémentation est sur le chemin de classe et activée (comme Netflix Eureka).
