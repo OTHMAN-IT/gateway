@@ -31,3 +31,11 @@ Sur ce fichier on mentionne :
 B) La passerelle est configurée pour créer des routes basées sur des services enregistrés auprès d'un DiscoveryClientregistre de services compatible.
 
 Pour activer cela, définissez spring.cloud.gateway.discovery.locator.enabled=trueet assurez-vous qu'une DiscoveryClientimplémentation est sur le chemin de classe et activée (comme Netflix Eureka).
+
+-------------------------------------
+Dependances exigées:
+-----
+-Gateway 
+-Spring Boot Actuator
+-Eureka Discovery Client
+-Hystrix
